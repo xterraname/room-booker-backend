@@ -1,4 +1,5 @@
 from pathlib import Path
+from typing import List
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
@@ -6,7 +7,14 @@ SECRET_KEY = 'django-insecure-i$xi=374&!#)7r0tt7e3kaz)@o)-870#i-0zpr_c+bmt^k+rsa
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS: List[str] = ['*']
+CORS_ALLOW_ALL_ORIGINS = True
+CSRF_TRUSTED_ORIGINS: List[str] = []
+
+INTERNAL_IPS = [
+    '127.0.0.1',
+]
+
 
 
 # Application definition
@@ -18,6 +26,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # Third party
+    'rest_framework',
+    'django_filters',
+
+    # Apps
+    'room_booker.booking.apps.BookingConfig'
 ]
 
 MIDDLEWARE = [
@@ -86,19 +101,18 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Tashkent'
 
 USE_I18N = True
 
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.2/howto/static-files/
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media' 
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles' 
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
