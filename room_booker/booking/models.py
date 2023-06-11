@@ -13,12 +13,18 @@ ROOM_TYPES = [
 class Resident(CreatedModified):
     name = models.CharField(max_length=100, unique=True)
 
+    def __str__(self) -> str:
+        return self.name
+
 
 class Room(CustomModel):
     name = models.CharField(max_length=100, unique=True)
     type = models.CharField(max_length=20, choices=ROOM_TYPES)
 
     capacity = models.PositiveIntegerField(default=1)
+
+    def __str__(self) -> str:
+        return self.name
 
 
 class Renter(CreatedModified):
@@ -27,3 +33,12 @@ class Renter(CreatedModified):
 
     start = models.DateTimeField()
     end = models.DateTimeField()
+
+    def resident_name(self):
+        return self.resident.name
+    
+    def room_name(self):
+        return self.room.name
+    
+    def __str__(self) -> str:
+        return f"{self.room.name} [{self.start} - {self.end}]"

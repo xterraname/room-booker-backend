@@ -30,9 +30,10 @@ INSTALLED_APPS = [
     # Third party
     'rest_framework',
     'django_filters',
+    'drf_yasg',
 
     # Apps
-    'room_booker.booking.apps.BookingConfig'
+    'room_booker.booking.apps.BookingConfig',
 ]
 
 MIDDLEWARE = [
@@ -116,3 +117,17 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+REST_FRAMEWORK = {
+    # 'DEFAULT_AUTHENTICATION_CLASSES': [
+    #     'rest_framework_simplejwt.authentication.JWTAuthentication',
+    # ],
+    # 'DEFAULT_PERMISSION_CLASSES': [
+    #     'rest_framework.permissions.IsAuthenticated',
+    # ],
+
+    # 'EXCEPTION_HANDLER': 'config.utils.exceptions.custom_exception_handler',
+
+    # 'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    # 'PAGE_SIZE': 10
+}
